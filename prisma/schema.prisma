@@ -1,0 +1,67 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id              String @id @default(auto()) @map("_id") @db.ObjectId 
+  name            String? //string and optional
+  username        String?   @unique //unique string and optional
+  bio             String? //string and optional
+  email           String?   @unique //string and optional
+  emailVerified   DateTime? //date and optional
+  image           String? //string and optional(for out session since prof imag can be too big and crash)
+  coverImage      String?
+  profileImage    String?
+  hashedPassword  String? //string and optional
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt //a prisma function that updates the time
+  followingIds    String[] @db.ObjectId 
+  hasNotification Boolean?
+
+  posts         Post[] //link array of posts
+  comments      Comment[] //link array of comments
+  notifications Notification[] //link array of notifications
+}
+
+model Post {
+  id                 String @id @default(auto()) @map("_id") @db.ObjectId
+  body               String
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+  userId             String @db.ObjectId
+  likedIds           String[] @db.ObjectId
+  image              String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade) //realtion to user(foreign key)
+
+  comments          Comment[]
+}
+
+model Comment {
+  id                 String @id @default(auto()) @map("_id") @db.ObjectId
+  body               String
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+  userId             String @db.ObjectId
+  postId             String @db.ObjectId
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade) //foreign keys
+  post Post @relation(fields: [postId], references: [id], onDelete: Cascade)
+}
+
+model Notification {
+  id                 String @id @default(auto()) @map("_id") @db.ObjectId
+  body               String
+  userId             String @db.ObjectId
+  createdAt          DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade) //reference to user
+}
