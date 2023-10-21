@@ -27,7 +27,7 @@ const PostView = () => {
     <>
       <Header showBackArrow label="React" />
       <PostItem data={fetchedPost} />
-      <Form postId={postId as string} isComment placeholder="React on this" />
+      <Form postId={postId as string} isComment placeholder="Type here" />
       <CommentFeed comments={fetchedPost?.comments} />
     </>
    );

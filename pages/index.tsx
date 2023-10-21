@@ -5,8 +5,8 @@ import Form from "@/components/Form"
 export default function Home() {
   return (
     <>
-      <Header label="Home" />
-      <Form placeholder="React on what's happening" />
+      <Header label="REACTOR" />
+      <Form placeholder="Type here" />
       <PostFeed />
     </>
   )
