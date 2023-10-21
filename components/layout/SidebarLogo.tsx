@@ -10,17 +10,17 @@ const SidebarLogo = () => {
       onClick={() => router.push('/')}
       className="
         rounded-full 
-        h-14
-        w-14
+        h-19
+        w-19
         p-4 
         flex 
         items-center 
         justify-center 
-        hover:bg-red-300 
+        hover:bg-green-300 
         hover:bg-opacity-10 
         cursor-pointer
     ">
-      <FaReact size={38} color="white" />
+      <FaReact size={48} color="red" />
     </div>
   );
 };

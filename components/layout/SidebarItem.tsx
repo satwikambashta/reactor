@@ -39,7 +39,6 @@ const SidebarItem: React.FC<SidebarItemProps> = ({ label, icon: Icon, href, auth
     <div onClick={handleClick} className="flex flex-row items-center">
       <div className="
         relative
-        rounded-full 
         h-14
         w-14
         flex

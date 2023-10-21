@@ -1,8 +1,9 @@
 //code for sidebar
 import { signOut } from 'next-auth/react';
-import { BiLogOut } from 'react-icons/bi';
-import { BsHouseFill, BsBellFill } from 'react-icons/bs';
-import { FaUser } from 'react-icons/fa';
+import { GiExitDoor } from 'react-icons/gi';
+import { MdCircleNotifications } from 'react-icons/md';
+import { HiOutlineHome } from 'react-icons/hi';
+import { CiUser } from 'react-icons/ci';
 
 import useCurrentUser from '@/hooks/useCurrentUser';
 
@@ -15,19 +16,19 @@ const Sidebar = () => {
 
   const items = [
     {
-      icon: BsHouseFill,
+      icon: HiOutlineHome,
       label: 'Home',
       href: '/',
     },
     {
-      icon: BsBellFill,
+      icon: MdCircleNotifications,
       label: 'Notifications',
       href: '/notifications',
       auth: true,
       alert: currentUser?.hasNotification
     },
     {
-      icon: FaUser,
+      icon: CiUser,
       label: 'Profile',
       href: `/users/${currentUser?.id}`,
       auth: true,
@@ -35,9 +36,9 @@ const Sidebar = () => {
   ]
 
   return (
-    <div className="col-span-1 h-full pr-4 md:pr-6">
+    <div className="col-span-1 h-full pr-4 md:pr-3">
         <div className="flex flex-col items-end">
-          <div className="space-y-2 lg:w-[230px]">
+          <div className="lg:w-[230px]">
             <SidebarLogo />
             {items.map((item) => (
               <SidebarItem
@@ -49,7 +50,7 @@ const Sidebar = () => {
                 label={item.label}
               />
             ))}
-            {currentUser && <SidebarItem onClick={() => signOut()} icon={BiLogOut} label="Logout" />}
+            {currentUser && <SidebarItem onClick={() => signOut()} icon={GiExitDoor} label="Logout" />}
             <SidebarReactButton />
           </div>
         </div>

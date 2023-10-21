@@ -24,7 +24,6 @@ const SidebarReactButton = () => {
       <div className="
         mt-6
         lg:hidden 
-        rounded-full 
         h-14
         w-14
         p-4
@@ -42,9 +41,8 @@ const SidebarReactButton = () => {
         mt-6
         hidden 
         lg:block 
-        px-4
+        px-3
         py-2
-        rounded-full
         bg-red-500
         hover:bg-opacity-90 
         cursor-pointer
@@ -56,7 +54,7 @@ const SidebarReactButton = () => {
             text-center
             font-semibold
             text-white 
-            text-[20px]
+            text-[25px]
         ">
           React
         </p>
